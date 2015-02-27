@@ -18,7 +18,11 @@ class TokenAuthServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('susomena/token-auth');
+		include __DIR__.'../../routes.php';
+
+		$this->publishes([
+			__DIR__.'../../../config/credentials.php' => config_path('credentials.php'),
+		]);
 	}
 
 	/**
