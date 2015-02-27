@@ -22,6 +22,7 @@ class TokenAuthServiceProvider extends ServiceProvider {
 
 		$this->publishes([
 			__DIR__.'/../../../config/credentials.php' => config_path('credentials.php'),
+			__DIR__.'/../../migrations/2015_02_27_100000_create_credentials_table.php' => base_path('database/migrations/2015_02_27_100000_create_credentials_table.php'),
 		]);
 	}
 
