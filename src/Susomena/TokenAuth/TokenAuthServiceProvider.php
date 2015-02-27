@@ -18,10 +18,10 @@ class TokenAuthServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		include __DIR__.'../../routes.php';
+		include __DIR__.'/../../routes.php';
 
 		$this->publishes([
-			__DIR__.'../../../config/credentials.php' => config_path('credentials.php'),
+			__DIR__.'/../../../config/credentials.php' => config_path('credentials.php'),
 		]);
 	}
 
