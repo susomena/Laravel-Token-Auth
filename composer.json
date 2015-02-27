@@ -1,0 +1,25 @@
+{
+    "name": "susomena/token-auth",
+    "description": "A token authentication package for Laravel 5",
+	"keywords": ["laravel", "token", "authentication", "auth"],
+	"license": "MIT",
+    "authors": [
+        {
+            "name": "Jesús Mena",
+            "email": "suso.mena@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "5.0.*"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-4": {
+            "Susomena\\TokenAuth\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
