@@ -7,4 +7,4 @@
  * 
  */
 
-Route::post('credentials/login', 'CredentialsController@login');
+Route::post('credentials/login', 'Susomena\TokenAuth\Controllers\CredentialsController@login');
