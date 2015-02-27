@@ -13,6 +13,7 @@ use Closure;
 use Illuminate\Contracts\Routing\Middleware;
 use Illuminate\Foundation\Application;
 use Response;
+use Susomena\TokenAuth\Credential;
 
 class TokenMiddleware implements Middleware{
 	/**
