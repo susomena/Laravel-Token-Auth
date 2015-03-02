@@ -19,6 +19,8 @@ And then migrate to add the credentials table to your database:
 
     artisan migrate
 
+Note that the migrations are made by alphabetical order. If you have created your own users table with your own migration, laravel will try to create the credentials table before your users table, and the foreign key existent in this table won't point to any users field, because users table don't exists. In this case, you'll have to change the name of the credentials migration file to let it appear after your migration.
+
 
 ### Using TokenAuth
 
