@@ -19,12 +19,12 @@ use Susomena\TokenAuth\Credential;
 
 class CredentialsController extends Controller{
 	public function login(){
-		if(Auth::attempt(Input::only('email', 'password'))){
-			$email = Input::only('email')['email'];
+		if(Auth::attempt(Input::only(Config::get('username'), 'password'))){
+			$username = Input::only(Config::get('username'))[Config::get('username')];
 
 			$token = uniqid("", true);
 			$expires = time() + Config::get('credentials.expires');
-			$user_id = User::where('email', $email)->first()->get()[0]['id'];
+			$user_id = User::where(Config::get('username'), $username)->first()->get()[0]['id'];
 
 			$credential = Credential::where('user_id', $user_id);
 

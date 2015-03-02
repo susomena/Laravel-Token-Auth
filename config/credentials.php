@@ -7,6 +7,8 @@
  * 
  */
 
+return [
+
 	/*
 	|--------------------------------------------------------------------------
 	| Expiration time
@@ -18,4 +20,18 @@
 	|
 	*/
 
-return ['expires' => 24*60*60];
+	'expires' => 24*60*60,
+
+	/*
+	|--------------------------------------------------------------------------
+	| Username authentication field
+	|--------------------------------------------------------------------------
+	|
+	| The field used in the application to authenticate the user. This field
+	| is the user's email by default.
+	|
+	*/
+
+	'username' => 'email'
+
+	];
