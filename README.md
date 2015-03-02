@@ -35,7 +35,7 @@ Also, you can use a migration to alter the original laravel users table to make 
 
 If you get any error like this one:
 
-PHP Fatal error:  Class 'Susomena\TokenAuth\TokenAuthServiceProvider' not found in /ProjectPath/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php on line 150
+    PHP Fatal error:  Class 'Susomena\TokenAuth\TokenAuthServiceProvider' not found in /ProjectPath/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php on line 150
 
 After a composer or artisan command, just comment the TokenAuthServiceProvider in you config/app.php providers array, launch the command again and then uncomment the line. This is just a dirty workaround while I try to fix this issue.
 
