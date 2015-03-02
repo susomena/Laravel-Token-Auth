@@ -34,3 +34,4 @@ And then, use this middleware in any route you want:
         // Closure logic
     }]);
 ```
+Now, if you want to authenticate your user with a token you'll have to user the `/credentials/login` route to authenticate the user's email and password and get a valid token for this user, then you'll have o send this token in every HTTP request by putting it in a header called `X-Credentials-Token`.
