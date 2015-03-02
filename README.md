@@ -22,7 +22,7 @@ And then migrate to add the credentials table to your database:
 
 ### Using TokenAuth
 
-This package contains all the stuff needed to authenticate users with tokens. The package defines a route in `/credentials/login`, which expects two parameters by post, email and password. If this pair of parameters belong to an existent user the route returns a JSON object with a token with 24 hours of life (this value can be changed in the config/credentials.php file). It's important to remove CSRF middleware from app/Http/Kernel.php for making this route work. If you ant to use CSRF rotection in your routes place the CSRF middleware in the routeMidleware array instead of the middleware array.
+This package contains all the stuff needed to authenticate users with tokens. The package defines a route in `/credentials/login`, which expects two parameters by HTTP POST, a username (by default an email field of the database, this can be changed in the config/credentials.php file) and a password. If this pair of parameters belong to an existent user the route returns a JSON object with a token with 24 hours of life (this value can be changed in the config/credentials.php file). It's important to remove CSRF middleware from app/Http/Kernel.php for making this route work. If you ant to use CSRF rotection in your routes place the CSRF middleware in the routeMidleware array instead of the middleware array.
 
 This package also includes a TokenMiddleware that you can use with your routes. To do this add this middleware to the routeMiddleware array in app/Http/Kernel.php:
 ```php
@@ -34,4 +34,4 @@ And then, use this middleware in any route you want:
         // Closure logic
     }]);
 ```
-Now, if you want to authenticate your user with a token you'll have to user the `/credentials/login` route to authenticate the user's email and password and get a valid token for this user, then you'll have o send this token in every HTTP request by putting it in a header called `X-Credentials-Token`.
+Now, if you want to authenticate your user with a token you'll have to user the `/credentials/login` route to authenticate the user's username and password and get a valid token for this user, then you'll have to send this token in every HTTP request by putting it in a HTTP header called `X-Credentials-Token`.
