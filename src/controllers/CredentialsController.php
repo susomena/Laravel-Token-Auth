@@ -46,7 +46,7 @@ class CredentialsController extends Controller{
 
 			return Response::json(['token' => $token]);
 		} else{
-			return Response::json(['code' => 401, 'reason' => 'Unauthorized'], 401);
+			return Response::json(['code' => 401, 'message' => 'Unauthorized'], 401);
 		}
 	}
 }

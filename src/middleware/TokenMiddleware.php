@@ -49,10 +49,10 @@ class TokenMiddleware implements Middleware{
 			if($credential->first()->get()[0]['expires']>time()) {
 				return $next($request);
 			} else{
-				return Response::json(['code' => 401, 'reason' => 'Unauthorized'], 401);
+				return Response::json(['code' => 401, 'message' => 'Unauthorized'], 401);
 			}
 		} else{
-			return Response::json(['code' => 401, 'reason' => 'Unauthorized'], 401);
+			return Response::json(['code' => 401, 'message' => 'Unauthorized'], 401);
 		}
 	}
 }
