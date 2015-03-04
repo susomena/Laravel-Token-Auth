@@ -24,13 +24,13 @@ class CredentialsController extends Controller{
 
 			$token = uniqid("", true);
 			$expires = time() + Config::get('credentials.expires');
-			$user_id = User::where(Config::get('credentials.username'), $username)->first()->get()[0]['id'];
+			$user_id = User::where(Config::get('credentials.username'), $username)->get()[0]['id'];
 
 			$credential = Credential::where('user_id', $user_id);
 
 			if($credential->count()>0) {
-				if (($credential->first()->get()[0]['expires']) > time()) {
-					return $credential->first()->get()[0]['token'];
+				if (($credential->get()[0]['expires']) > time()) {
+					return Response::json(['token' => $credential->get()[0]['token']]);
 				} else{
 					$credential->first()->delete();
 				}
