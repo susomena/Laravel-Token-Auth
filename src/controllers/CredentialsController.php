@@ -24,16 +24,18 @@ class CredentialsController extends Controller{
 
 			$token = uniqid("", true);
 			$expires = time() + Config::get('credentials.expires');
-			$user_id = User::where(Config::get('credentials.username'), $username)->get()[0]['id'];
+			$user = User::where(Config::get('credentials.username'), $username)->get()[0];
+			$user_id = $user['id'];
 
-			$credential = Credential::where('user_id', $user_id);
+			$credentials = Credential::with('user')->where('user_id', $user_id);
 
-			if($credential->count()>0) {
-				if (($credential->get()[0]['expires']) > time()) {
-					return Response::json(['token' => $credential->get()[0]['token']]);
-				} else{
-					$credential->first()->delete();
-				}
+			if($credentials->count()>0) {
+				$credential = $credentials->get()[0];
+
+				if (($credential['expires']) > time())
+					return $credential;
+
+				$credential->first()->delete();
 			}
 
 			$credential = new Credential;
@@ -44,7 +46,7 @@ class CredentialsController extends Controller{
 
 			$credential->save();
 
-			return Response::json(['token' => $token]);
+			return $credential->with('user')->get();
 		} else{
 			return Response::json(['code' => 401, 'message' => 'Unauthorized'], 401);
 		}
