@@ -42,7 +42,27 @@ After a composer or artisan command, just comment the TokenAuthServiceProvider i
 
 ### Using TokenAuth
 
-This package contains all the stuff needed to authenticate users with tokens. The package defines a route in `/credentials/login`, which expects two parameters by HTTP POST, a username (by default an email field of the database, this can be changed in the config/credentials.php file) and a password. If this pair of parameters belong to an existent user the route returns a JSON object with a token with 24 hours of life (this value can be changed in the config/credentials.php file). It's important to remove CSRF middleware from app/Http/Kernel.php for making this route work. If you ant to use CSRF rotection in your routes place the CSRF middleware in the routeMidleware array instead of the middleware array.
+This package contains all the stuff needed to authenticate users with tokens. The package defines a route in `/credentials/login`, which expects two parameters by HTTP POST, a username (by default an email field of the database, this can be changed in the config/credentials.php file) and a password. If this pair of parameters belong to an existent user the route returns a JSON object with the credentials object (which contains a token with 24 hours of life, this value can be changed in the config/credentials.php file) and the user which owns the token. The following is an example of that JSON:
+
+```json
+    {
+        "id": 27,
+        "token": "54fd719a611105.13505663",
+        "expires": 1425982234,
+        "user_id": 1,
+        "created_at": "2015-03-09 10:10:34",
+        "updated_at": "2015-03-09 10:10:34",
+        "user": {
+            "id": 1,
+            "name": "Name",
+            "email": "email@email.com",
+            "created_at": "2015-03-06 12:22:01",
+            "updated_at": "2015-03-06 12:22:01"
+        }
+    }
+```
+
+It's important to remove CSRF middleware from app/Http/Kernel.php for making this route work. If you want to use CSRF rotection in your routes place the CSRF middleware in the routeMidleware array instead of the middleware array.
 
 This package also includes a TokenMiddleware that you can use with your routes. To do this add this middleware to the routeMiddleware array in app/Http/Kernel.php:
 ```php
